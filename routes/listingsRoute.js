@@ -126,4 +126,13 @@ router.get("/all", async (req, res) => {
   }
 });
 
+router.get("/:id", async (req, res) => {
+  try {
+    const listing = await Listing.findOne({ id: req.params.id });
+    res.send(listing);
+  } catch (error) {
+    return res.status(400).json({ message: error})
+  }
+});
+
 module.exports = router;
