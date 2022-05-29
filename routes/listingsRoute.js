@@ -14,7 +14,7 @@ router.get("/seed", async (req, res) => {
     {
       rentalType: "Whole Unit",
       property: "14 Bukit Teresa Close",
-      postal: 099786,
+      postal: "099786",
       district: 4,
       propertyType: "Private Property",
       price: 8000,
@@ -34,7 +34,7 @@ router.get("/seed", async (req, res) => {
     {
       rentalType: "Whole Unit",
       property: "16 Shunfu Road",
-      postal: 575742,
+      postal: "575742",
       district: 20,
       propertyType: "Private Property",
       price: 4500,
@@ -54,7 +54,7 @@ router.get("/seed", async (req, res) => {
     {
       rentalType: "Room Rental (En-Suite)",
       property: "249 Pasir Panjang Road",
-      postal: 118609,
+      postal: "118609",
       district: 05,
       propertyType: "Co-living",
       price: 1800,
@@ -74,7 +74,7 @@ router.get("/seed", async (req, res) => {
     {
       rentalType: "Room Rental (Common)",
       property: "360 Pasir Panjang Road",
-      postal: 118699,
+      postal: "118699",
       district: 05,
       propertyType: "Co-living",
       price: 1400,
@@ -94,7 +94,7 @@ router.get("/seed", async (req, res) => {
     {
       rentalType: "Whole Unit",
       property: "491 Yio Chu Kang Road",
-      postal: 787078,
+      postal: "787078",
       district: 26,
       propertyType: "Private Property",
       price: 5800,

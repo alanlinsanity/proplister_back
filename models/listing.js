@@ -11,7 +11,7 @@ const listingSchema = mongoose.Schema(
       required: true,
     },
     postal: {
-      type: Number,
+      type: String,
       required: true,
     },
     district: {
