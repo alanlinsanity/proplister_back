@@ -135,4 +135,18 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+router.post("/create", async (req, res) => {
+  console.log("req.body", req.body);
+  try {
+    const createdListing = await Listing.create(req.body);
+    const listing = await Listing.findOne({ _id: req.body });
+
+    await listing.save();
+
+    res.status(200).send(createdListing);
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
 module.exports = router;
