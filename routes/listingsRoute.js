@@ -14,22 +14,22 @@ router.get("/seed", async (req, res) => {
   const listings = [
     {
       rentalType: "Whole Unit",
-      property: "19 Bukit Teresa Close",
-      postal: "099788",
-      district: 4,
+      property: "Jervois Hill",
+      postal: "247714",
+      district: 10,
       propertyType: "Private Property",
-      price: 8000,
-      size: 4000,
-      noOfBedrooms: 5,
+      price: 30000,
+      size: 15000,
+      noOfBedrooms: 7,
       noOfBathrooms: 5,
       description:
-        "Located near Harbourfront, this beautiful detached home was built in 1995 and comes with a beautiful pool. It is just a short drive away from CTE and AYE. The nearest MRT is Outram and Harbourfront.",
+        "Located up the prestigious Jervois Hill, this beautiful GCB was built in 2018 and comes with a beautiful pool. It is just a short drive away from CTE and AYE. The nearest MRT is Redhill and Orchard.",
       lister: "Alan",
       contact: 90497018,
       images: [
-        "https://images.oyoroomscdn.com/uploads/hotel_image/105649/large/8e80e24a5496eb80.jpg",
+        "https://i.guim.co.uk/img/media/b01bbb991bb4e2eeef51ae8260d549eabdeadc18/53_0_2400_1440/master/2400.jpg?width=1200&quality=85&auto=format&fit=max&s=845db51118711c13503f4ec33cc46a26",
+        "https://www.asiaone.com/sites/default/files/original_images/Jul2017/hse.jpg",
         "https://images.oyoroomscdn.com/uploads/hotel_image/105649/large/caef038a4b97b589.jpg",
-        "https://images.oyoroomscdn.com/uploads/hotel_image/105649/large/46bffe91d06dcb96.jpg",
       ],
     },
     {
@@ -44,10 +44,10 @@ router.get("/seed", async (req, res) => {
       noOfBathrooms: 2,
       description:
         "Located near Marymount MRT, this brand new development obtained its TOP in 2022 and comes with a beautiful amazing facilities. It is just 3 minutes walk away from the nearby Shunfu market which allows tenants to have easy access to food and grocery.",
-      lister: "Michael",
-      contact: 99999999,
+      lister: "Ben",
+      contact: 91234567,
       images: [
-        "https://images.oyoroomscdn.com/uploads/hotel_image/107625/large/4488071a59d38cc5.jpg",
+        "https://www.jadescape.sg/wp-content/uploads/2018/11/Qingjian-unveils-shunfu-road-project-jadescape-condo-singapore.jpg",
         "https://images.oyoroomscdn.com/uploads/hotel_image/107625/large/d452b4897a767f6b.jpg",
         "https://images.oyoroomscdn.com/uploads/hotel_image/107625/large/8f690e54761344e0.jpg",
       ],
@@ -56,7 +56,7 @@ router.get("/seed", async (req, res) => {
       rentalType: "Room Rental (En-Suite)",
       property: "249 Pasir Panjang Road",
       postal: "118609",
-      district: 05,
+      district: 5,
       propertyType: "Co-living",
       price: 1800,
       size: 250,
@@ -84,8 +84,8 @@ router.get("/seed", async (req, res) => {
       noOfBathrooms: 1,
       description:
         "Located near NUS, this common room is located in beautiful development with a squash court as well as a swimming pool. Rental quoted includes utilities and monthly cleaning services.",
-      lister: "Alan",
-      contact: 90497018,
+      lister: "Ben",
+      contact: 91234567,
       images: [
         "https://www.altalic.com/wp-content/uploads/2019/01/1428_952_ollie_convenience1.jpg",
         "https://www.altalic.com/wp-content/uploads/2019/01/1428_952_ollie_comfort7.jpg",
@@ -112,6 +112,106 @@ router.get("/seed", async (req, res) => {
         "https://i.pinimg.com/736x/b8/7b/f8/b87bf8fce6fc8158cc7862578699d6a4.jpg",
       ],
     },
+    {
+      rentalType: "Whole Unit",
+      property: "241 Bishan Street 22",
+      postal: "570241",
+      district: 20,
+      propertyType: "HDB",
+      price: 4500,
+      size: 1302,
+      noOfBedrooms: 4,
+      noOfBathrooms: 2,
+      description:
+        "Located near Bishan-Ang Mo Kio Park, this 5 room HDB has got an incredible view of the man-made park. Residents have access to the Bishan North Shopping Mall which is just a ten minutes walk away. Nearest MRT is Bishan MRT Station which is a 5 minutes bus ride from this unit.",
+      lister: "Chris",
+      contact: 98765432,
+      images: [
+        "https://bestinsingapore.com/wp-content/uploads/2020/07/swimming-pool-ii-the-fullerton-hotel-singapore.jpg",
+        "https://nobleidesign.com/sg/wp-content/uploads/2020/02/Urban-Treasures-2-bd-655x367.jpg",
+        "https://i.pinimg.com/736x/b8/7b/f8/b87bf8fce6fc8158cc7862578699d6a4.jpg",
+      ],
+    },
+    {
+      rentalType: "Room Rental (En-Suite)",
+      property: "Reflections At Keppel Bay",
+      postal: "098417",
+      district: 4,
+      propertyType: "Private Property",
+      price: 2000,
+      size: 250,
+      noOfBedrooms: 1,
+      noOfBathrooms: 1,
+      description:
+        "Minutes walk from Telok Blangah MRT Station, this waterfron 2 bedroom boasts a spectacular unblocked sea view over the Southern Waters of Singapore. The development comes with a tennis court and multiple swimming pools. It is an expat favorite choice.",
+      lister: "Alan",
+      contact: 90497018,
+      images: [
+        "https://s3-ap-southeast-1.amazonaws.com/static.streetsine/Project%20Photos/2067/L/2000301.jpg",
+        "https://s3-ap-southeast-1.amazonaws.com/static.streetsine/Project_Description_Photos/2016-10-17/171016175143-Reflections-At-Keppel-Bay-1000x500.jpg",
+        "https://i.pinimg.com/736x/b8/7b/f8/b87bf8fce6fc8158cc7862578699d6a4.jpg",
+      ],
+    },
+    {
+      rentalType: "Whole Unit",
+      property: "Duo Residences",
+      postal: "189350",
+      district: 7,
+      propertyType: "Private Property",
+      price: 6000,
+      size: 969,
+      noOfBedrooms: 2,
+      noOfBathrooms: 2,
+      description:
+        "Located right above Bugis MRT and interconnected with Andaz Hotel, this 2 bedroom is ideal home for those who loves city-living. Live, work and play all within minutes walk away from this urban sanctuary.",
+      lister: "David",
+      contact: 81234567,
+      images: [
+        "https://img.rockwool.com/https%3A%2F%2Fbrandcommunity.rockwool.com%2Fasset%2FcY4s440Gdaq1tyAkhYHT-A?auto=format%2Ccompress&s=0cbfc77e13253c45304fdb4e3ad02d10",
+        "https://cdn.tatlerasia.com/asiatatler/i/sg/2018/11/05152437-duo-3-bedroom-living-room-1_cover_1500x1000.jpg",
+        "https://d1hy6t2xeg0mdl.cloudfront.net/image/329778/f7d8db17f3/standard",
+      ],
+    },
+    {
+      rentalType: "Whole Unit",
+      property: "1G Cantonment Road",
+      postal: "085301",
+      district: 2,
+      propertyType: "HDB",
+      price: 4500,
+      size: 1055,
+      noOfBedrooms: 3,
+      noOfBathrooms: 2,
+      description:
+        "This HDB comes with a minimalistic design. The owners have recently renovated it 2 years ago.",
+      lister: "David",
+      contact: 81234567,
+      images: [
+        "https://d1hy6t2xeg0mdl.cloudfront.net/image/301383/4f746fd73a/standard",
+        "http://s3-ap-southeast-1.amazonaws.com/www.theedgeproperty.com/s3fs-public/editor/sg/BLD_PINNACLE_DUXTON_01_BT.JPG",
+        "https://i.pinimg.com/736x/b8/7b/f8/b87bf8fce6fc8158cc7862578699d6a4.jpg",
+      ],
+    },
+    {
+      rentalType: "Whole Unit",
+      property: "Sentosa Cove",
+      postal: "098529",
+      district: 4,
+      propertyType: "Private Property",
+      price: 20000,
+      size: 4000,
+      noOfBedrooms: 4,
+      noOfBathrooms: 4,
+      description:
+        "Sentosa Cove Bungalow. Comes with an amazing pool and car porch for 3 cars. ",
+      lister: "Chris",
+      contact: 98765432,
+      images: [
+        "https://www.99.co/singapore/insider/wp-content/uploads/2020/07/good-class-bungalow-gcb-singapore.jpg",
+        "https://nobleidesign.com/sg/wp-content/uploads/2020/02/Urban-Treasures-2-bd-655x367.jpg",
+        "https://i.pinimg.com/736x/b8/7b/f8/b87bf8fce6fc8158cc7862578699d6a4.jpg",
+      ],
+    },
   ];
   await Listing.deleteMany({});
   await Listing.insertMany(listings);
@@ -121,6 +221,15 @@ router.get("/seed", async (req, res) => {
 router.get("/all", async (req, res) => {
   try {
     const listings = await Listing.find({});
+    res.send(listings);
+  } catch (error) {
+    return res.status(400).json({ message: error });
+  }
+});
+
+router.get("/:contact", async (req, res) => {
+  try {
+    const listings = await Listing.find({contact:req.params.contact});
     res.send(listings);
   } catch (error) {
     return res.status(400).json({ message: error });
