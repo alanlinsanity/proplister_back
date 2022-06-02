@@ -57,7 +57,7 @@ router.get("/seed", async (req, res) => {
       property: "249 Pasir Panjang Road",
       postal: "118609",
       district: 5,
-      propertyType: "Co-living",
+      propertyType: "Private",
       price: 1800,
       size: 250,
       noOfBedrooms: 1,
@@ -77,7 +77,7 @@ router.get("/seed", async (req, res) => {
       property: "360 Pasir Panjang Road",
       postal: "118699",
       district: 05,
-      propertyType: "Co-living",
+      propertyType: "Private Property",
       price: 1400,
       size: 200,
       noOfBedrooms: 1,
@@ -236,7 +236,7 @@ router.get("/:contact", async (req, res) => {
   }
 });
 
-router.get("/:id", async (req, res) => {
+router.get("/listing/:id", async (req, res) => {
   try {
     const listing = await Listing.findOne({ _id: req.params.id });
     res.send(listing);
