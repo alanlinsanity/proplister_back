@@ -229,7 +229,7 @@ router.get("/all", async (req, res) => {
 
 router.get("/:contact", async (req, res) => {
   try {
-    const listings = await Listing.find({contact:req.params.contact});
+    const listings = await Listing.find({ contact: req.params.contact });
     res.send(listings);
   } catch (error) {
     return res.status(400).json({ message: error });
