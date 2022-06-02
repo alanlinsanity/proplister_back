@@ -24,6 +24,10 @@ const userSchema = mongoose.Schema(
       type: Boolean,
       default: false,
     },
+    listings: {
+        type: Array,
+        default: [],
+    }
   },
   {
     timestamps: true,

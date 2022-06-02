@@ -15,6 +15,7 @@ router.get("/seed", async (req, res) => {
       email: "alan@gmail.com",
       contact: 90497018,
       password: "alan123",
+      listings: [],
       isAdmin: true,
     },
     {
@@ -22,6 +23,7 @@ router.get("/seed", async (req, res) => {
       email: "ben@gmail.com",
       contact: 91234567,
       password: "ben123",
+      listings: [],
       isAdmin: false,
     },
     {
@@ -29,6 +31,7 @@ router.get("/seed", async (req, res) => {
       email: "chris@gmail.com",
       contact: 98765432,
       password: "chris123",
+      listings: [],
       isAdmin: true,
     },
     {
@@ -36,6 +39,7 @@ router.get("/seed", async (req, res) => {
       email: "david@gmail.com",
       contact: 81234567,
       password: "david123",
+      listings: [],
       isAdmin: false,
     },
   ];
@@ -44,17 +48,7 @@ router.get("/seed", async (req, res) => {
   res.json(users);
 });
 
-// router.post("/register", async (req, res) => {
-//     console.log("req.body", req.body);
-//   try {
-//     const createdUser = await User.create(req.body);
-//     const user = await User.findOne({Username : req.body.name});
 
-//     await user.save();
-//   } catch (error) {
-//     return res.status(400).json({ error });
-//   }
-// });
 
 router.post("/register", async (req, res) => {
   console.log("req.body", req.body);

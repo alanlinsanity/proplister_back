@@ -8,13 +8,14 @@ mongoose.connect(mongoURL, {useUnifiedTopology : true, useNewUrlParser : true })
 
 
 const Listing = require("../models/listing");
+const User = require("../models/user");
 
 router.get("/seed", async (req, res) => {
   const listings = [
     {
       rentalType: "Whole Unit",
-      property: "14 Bukit Teresa Close",
-      postal: "099786",
+      property: "19 Bukit Teresa Close",
+      postal: "099788",
       district: 4,
       propertyType: "Private Property",
       price: 8000,
@@ -135,18 +136,256 @@ router.get("/:id", async (req, res) => {
   }
 });
 
+//create route
 router.post("/create", async (req, res) => {
   console.log("req.body", req.body);
   try {
     const createdListing = await Listing.create(req.body);
-    const listing = await Listing.findOne({ _id: req.body });
+    // const listing = await Listing.findOne({ _id: req.body });
 
-    await listing.save();
+    const user = await User.findOne({ contact: req.body.contact });
+
+    user.listings.push(createdListing._id);
+    await user.save();
+    await createdListing.save();
 
     res.status(200).send(createdListing);
   } catch (error) {
     res.status(400).json({ error: error.message });
   }
 });
+
+//*Put route
+router.put("/edit", async (req, res) => {
+  await Listing.findByIdAndUpdate({ _id: req.body._id }, req.body);
+  res.json({ message: "Listing Updated" });
+});
+
+//* Delete Route
+router.delete("/:id", async (req, res) => {
+  console.log(req.params.id)
+  await Listing.findByIdAndRemove(req.params.id);
+  console.log("deleting", req.params);
+  res.json({ message: "Listing Deleted" });
+});
+
+//* Search Filter Route
+router.post("/search", async (req, res) => {
+
+  let  {searchValue_min,searchValue_max,searchValue_HDBorPrivate,searchValue_Rooms, searchValue_Bathrooms } = req.body;
+  if (searchValue_min >= searchValue_max){
+    searchValue_max = 9999
+  }
+  console.log(`searchValue_min:${searchValue_min} searchValue_max:${searchValue_max} searchValue_HDBorPrivate: ${searchValue_HDBorPrivate} searchValue_Rooms${searchValue_Rooms}searchValue_Bathrooms:${searchValue_Bathrooms}`)
+  try {
+    // const filteredList = await Listing.find({})
+    
+    if (searchValue_Rooms ==="Any" && searchValue_Bathrooms ==="Any" && searchValue_HDBorPrivate ==="Any" ){
+      const filteredList = await Listing.find(
+        {$and: 
+        [ 
+          {price:{$gt:searchValue_min || 0}},
+          {price:{$lt:searchValue_max || 9999}},
+        ]
+
+      });
+      res.status(200).json(filteredList)
+      console.log("filtered list>>>",filteredList)
+    }else if (searchValue_Rooms ==="More than 4 rooms" && searchValue_Bathrooms ==="Any" && searchValue_HDBorPrivate ==="Any"){
+      const filteredList = await Listing.find(
+        {$and: 
+        [ 
+          {price:{$gt:searchValue_min || 0}},
+          {price:{$lt:searchValue_max || 9999}},
+          {no_of_bedrooms:{ $gte:5 }},
+        ]
+      });
+      res.status(200).json(filteredList)
+    }else if (searchValue_Rooms ==="Any" && searchValue_Bathrooms ==="More than 4 rooms" && searchValue_HDBorPrivate ==="Any"){
+      const filteredList = await Listing.find(
+        {$and: 
+        [ 
+          {price:{$gt:searchValue_min || 0}},
+          {price:{$lt:searchValue_max || 9999}},
+          {no_of_bathrooms:{ $gte:5 }},
+        ]
+      });
+      res.status(200).json(filteredList)
+    }else if (searchValue_Rooms ==="More than 4 rooms" && searchValue_Bathrooms ==="More than 4 rooms" && searchValue_HDBorPrivate ==="Any"){
+      const filteredList = await Listing.find(
+        {$and: 
+        [ 
+          {price:{$gt:searchValue_min || 0}},
+          {price:{$lt:searchValue_max || 9999}},
+          {no_of_bathrooms:{ $gte:5 }},
+          {no_of_bedrooms:{ $gte:5 }}
+        ]
+      });
+      res.status(200).json(filteredList)
+    }else if (searchValue_Rooms ==="Any" && searchValue_HDBorPrivate ==="Any"){
+      const filteredList = await Listing.find(
+        {$and: 
+        [ 
+          {price:{$gt:searchValue_min || 0}},
+          {price:{$lt:searchValue_max || 9999}},
+          {no_of_bathrooms:{ $eq:searchValue_Bathrooms }}
+        ]
+      });
+      res.status(200).json(filteredList)
+    }else if (searchValue_Bathrooms ==="Any" && searchValue_HDBorPrivate ==="Any"){
+      const filteredList = await Listing.find(
+        {$and: 
+        [ 
+          {price:{$gt:searchValue_min || 0}},
+          {price:{$lt:searchValue_max || 9999}},
+          {no_of_bedrooms:{ $eq:searchValue_Rooms }}
+        ]
+      });
+      res.status(200).json(filteredList)
+    }else if (searchValue_Bathrooms ==="More than 4 rooms" && searchValue_HDBorPrivate ==="Any"){
+      const filteredList = await Listing.find(
+        {$and: 
+        [ 
+          {price:{$gt:searchValue_min || 0}},
+          {price:{$lt:searchValue_max || 9999}},
+          {no_of_bedrooms:{ $eq:searchValue_Rooms }},
+          {no_of_bathrooms:{ $gte:5 }},
+        ]
+      });
+      res.status(200).json(filteredList)
+    }else if (searchValue_Rooms ==="More than 4 rooms" && searchValue_HDBorPrivate ==="Any"){
+      const filteredList = await Listing.find(
+        {$and: 
+        [ 
+          {price:{$gt:searchValue_min || 0}},
+          {price:{$lt:searchValue_max || 9999}},
+          {no_of_bedrooms:{ $gte:5}},
+          {no_of_bathrooms:{ $eq:searchValue_Bathrooms }}
+        ]
+      });
+      res.status(200).json(filteredList)
+    }else if (searchValue_Rooms ==="Any" && searchValue_Bathrooms ==="Any"){
+      const filteredList = await Listing.find(
+        {$and: 
+        [ 
+          {property_type: searchValue_HDBorPrivate},
+          {price:{$gt:searchValue_min || 0}},
+          {price:{$lt:searchValue_max || 9999}},
+        ]
+      });
+      res.status(200).json(filteredList)
+    }else if (searchValue_Rooms === "More than 4 rooms" && searchValue_Bathrooms ==="Any"){
+      const filteredList = await Listing.find(
+        {$and: 
+        [
+          {property_type: searchValue_HDBorPrivate},
+          {price:{$gt:searchValue_min || 0}},
+          {price:{$lt:searchValue_max || 9999}},
+          {no_of_bedrooms:{ $gte:5 }},
+          
+        ]
+      });
+      res.status(200).json(filteredList)
+    }else if (searchValue_Bathrooms ==="More than 4 rooms" && searchValue_Rooms === "Any" ){
+      const filteredList = await Listing.find(
+        {$and: 
+        [
+          {property_type: searchValue_HDBorPrivate},
+          {price:{$gt:searchValue_min || 0}},
+          {price:{$lt:searchValue_max || 9999}},
+          {no_of_bathrooms:{ $gte:5 }},
+          
+        ]
+      });
+      res.status(200).json(filteredList)
+    }else if (searchValue_Rooms === "More than 4 rooms" && searchValue_Bathrooms === "More than 4 rooms"  ){
+      const filteredList = await Listing.find(
+        {$and: 
+        [
+          {property_type: searchValue_HDBorPrivate},
+          {price:{$gt:searchValue_min || 0}},
+          {price:{$lt:searchValue_max || 9999}},
+          {no_of_bedrooms:{ $gte:5 }},
+          {no_of_bathrooms:{ $gte:5 }},
+        ]
+      });
+      res.status(200).json(filteredList)
+    }else if (searchValue_HDBorPrivate ==="Any" ){
+      const filteredList = await Listing.find(
+        {$and: 
+        [
+          {price:{$gt:searchValue_min || 0}},
+          {price:{$lt:searchValue_max || 9999}},
+          {no_of_bathrooms:{ $eq:searchValue_Bathrooms }},
+          {no_of_bedrooms:{ $eq:searchValue_Rooms }}
+        ]
+      });
+      res.status(200).json(filteredList)
+    }else if (searchValue_Rooms ==="Any" ){
+      const filteredList = await Listing.find(
+        {$and: 
+        [
+          {property_type: searchValue_HDBorPrivate},
+          {price:{$gt:searchValue_min || 0}},
+          {price:{$lt:searchValue_max || 9999}},
+          {no_of_bathrooms:{ $eq:searchValue_Bathrooms }},
+        ]
+      });
+      res.status(200).json(filteredList)
+    }else if (searchValue_Bathrooms ==="Any" ){
+      const filteredList = await Listing.find(
+        {$and: 
+        [
+          {property_type: searchValue_HDBorPrivate},
+          {price:{$gt:searchValue_min || 0}},
+          {price:{$lt:searchValue_max || 9999}},
+          {no_of_bedrooms:{ $eq:searchValue_Rooms }},
+        ]
+      });
+      res.status(200).json(filteredList)
+    }else if (searchValue_Rooms === "More than 4 rooms" ){
+      const filteredList = await Listing.find(
+        {$and: 
+        [
+          {property_type: searchValue_HDBorPrivate},
+          {price:{$gt:searchValue_min || 0}},
+          {price:{$lt:searchValue_max || 9999}},
+          {no_of_bedrooms:{ $gte:5 }},
+          {no_of_bathrooms:{ $eq:searchValue_Bathrooms }},
+          
+        ]
+      });
+      res.status(200).json(filteredList)
+    }else if (searchValue_Bathrooms === "More than 4 rooms" ){
+      const filteredList = await Listing.find(
+        {$and: 
+        [
+          {property_type: searchValue_HDBorPrivate},
+          {price:{$gt:searchValue_min || 0}},
+          {price:{$lt:searchValue_max || 9999}},
+          {no_of_bedrooms:{ $eq:searchValue_Rooms }},
+          {no_of_bathrooms:{ $gte:5 }},
+        ]
+      });
+      res.status(200).json(filteredList)
+    }else{
+      const filteredList = await Listing.find(
+        {$and: 
+        [
+          {property_type: searchValue_HDBorPrivate},
+          {price:{$gt:searchValue_min || 0}},
+          {price:{$lt:searchValue_max || 9999}},
+          {no_of_bedrooms:{ $eq:searchValue_Rooms }},
+          {no_of_bathrooms:{ $eq:searchValue_Bathrooms }},
+        ]
+      });
+      res.status(200).json(filteredList)
+    }
+
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+  }
+});
+
 
 module.exports = router;
