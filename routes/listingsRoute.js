@@ -278,12 +278,12 @@ router.delete("/:id", async (req, res) => {
   res.json({ message: "Listing Deleted" });
 });
 
-//* Search Filter Route
+//* Search Route
 router.post("/search", async (req, res) => {
 
   let  {searchValue_min,searchValue_max,searchValue_HDBorPrivate,searchValue_Rooms, searchValue_Bathrooms } = req.body;
   if (searchValue_min >= searchValue_max){
-    searchValue_max = 9999
+    searchValue_max = 999999
   }
   console.log(`searchValue_min:${searchValue_min} searchValue_max:${searchValue_max} searchValue_HDBorPrivate: ${searchValue_HDBorPrivate} searchValue_Rooms${searchValue_Rooms}searchValue_Bathrooms:${searchValue_Bathrooms}`)
   try {
@@ -294,7 +294,7 @@ router.post("/search", async (req, res) => {
         {$and: 
         [ 
           {price:{$gt:searchValue_min || 0}},
-          {price:{$lt:searchValue_max || 9999}},
+          {price:{$lt:searchValue_max || 999999}},
         ]
 
       });
@@ -305,8 +305,8 @@ router.post("/search", async (req, res) => {
         {$and: 
         [ 
           {price:{$gt:searchValue_min || 0}},
-          {price:{$lt:searchValue_max || 9999}},
-          {no_of_bedrooms:{ $gte:5 }},
+          {price:{$lt:searchValue_max || 999999}},
+          {noOfBedrooms:{ $gte:5 }},
         ]
       });
       res.status(200).json(filteredList)
@@ -315,8 +315,8 @@ router.post("/search", async (req, res) => {
         {$and: 
         [ 
           {price:{$gt:searchValue_min || 0}},
-          {price:{$lt:searchValue_max || 9999}},
-          {no_of_bathrooms:{ $gte:5 }},
+          {price:{$lt:searchValue_max || 999999}},
+          {noOfBathrooms:{ $gte:5 }},
         ]
       });
       res.status(200).json(filteredList)
@@ -325,9 +325,9 @@ router.post("/search", async (req, res) => {
         {$and: 
         [ 
           {price:{$gt:searchValue_min || 0}},
-          {price:{$lt:searchValue_max || 9999}},
-          {no_of_bathrooms:{ $gte:5 }},
-          {no_of_bedrooms:{ $gte:5 }}
+          {price:{$lt:searchValue_max || 999999}},
+          {noOfBathrooms:{ $gte:5 }},
+          {noOfBedrooms:{ $gte:5 }}
         ]
       });
       res.status(200).json(filteredList)
@@ -336,8 +336,8 @@ router.post("/search", async (req, res) => {
         {$and: 
         [ 
           {price:{$gt:searchValue_min || 0}},
-          {price:{$lt:searchValue_max || 9999}},
-          {no_of_bathrooms:{ $eq:searchValue_Bathrooms }}
+          {price:{$lt:searchValue_max || 999999}},
+          {noOfBathrooms:{ $eq:searchValue_Bathrooms }}
         ]
       });
       res.status(200).json(filteredList)
@@ -346,8 +346,8 @@ router.post("/search", async (req, res) => {
         {$and: 
         [ 
           {price:{$gt:searchValue_min || 0}},
-          {price:{$lt:searchValue_max || 9999}},
-          {no_of_bedrooms:{ $eq:searchValue_Rooms }}
+          {price:{$lt:searchValue_max || 999999}},
+          {noOfBedrooms:{ $eq:searchValue_Rooms }}
         ]
       });
       res.status(200).json(filteredList)
@@ -356,9 +356,9 @@ router.post("/search", async (req, res) => {
         {$and: 
         [ 
           {price:{$gt:searchValue_min || 0}},
-          {price:{$lt:searchValue_max || 9999}},
-          {no_of_bedrooms:{ $eq:searchValue_Rooms }},
-          {no_of_bathrooms:{ $gte:5 }},
+          {price:{$lt:searchValue_max || 999999}},
+          {noOfBedrooms:{ $eq:searchValue_Rooms }},
+          {noOfBathrooms:{ $gte:5 }},
         ]
       });
       res.status(200).json(filteredList)
@@ -367,9 +367,9 @@ router.post("/search", async (req, res) => {
         {$and: 
         [ 
           {price:{$gt:searchValue_min || 0}},
-          {price:{$lt:searchValue_max || 9999}},
-          {no_of_bedrooms:{ $gte:5}},
-          {no_of_bathrooms:{ $eq:searchValue_Bathrooms }}
+          {price:{$lt:searchValue_max || 999999}},
+          {noOfBedrooms:{ $gte:5}},
+          {noOfBathrooms:{ $eq:searchValue_Bathrooms }}
         ]
       });
       res.status(200).json(filteredList)
@@ -377,9 +377,9 @@ router.post("/search", async (req, res) => {
       const filteredList = await Listing.find(
         {$and: 
         [ 
-          {property_type: searchValue_HDBorPrivate},
+          {propertyType: searchValue_HDBorPrivate},
           {price:{$gt:searchValue_min || 0}},
-          {price:{$lt:searchValue_max || 9999}},
+          {price:{$lt:searchValue_max || 999999}},
         ]
       });
       res.status(200).json(filteredList)
@@ -387,10 +387,10 @@ router.post("/search", async (req, res) => {
       const filteredList = await Listing.find(
         {$and: 
         [
-          {property_type: searchValue_HDBorPrivate},
+          {propertyType: searchValue_HDBorPrivate},
           {price:{$gt:searchValue_min || 0}},
-          {price:{$lt:searchValue_max || 9999}},
-          {no_of_bedrooms:{ $gte:5 }},
+          {price:{$lt:searchValue_max || 999999}},
+          {noOfBedrooms:{ $gte:5 }},
           
         ]
       });
@@ -399,10 +399,10 @@ router.post("/search", async (req, res) => {
       const filteredList = await Listing.find(
         {$and: 
         [
-          {property_type: searchValue_HDBorPrivate},
+          {propertyType: searchValue_HDBorPrivate},
           {price:{$gt:searchValue_min || 0}},
-          {price:{$lt:searchValue_max || 9999}},
-          {no_of_bathrooms:{ $gte:5 }},
+          {price:{$lt:searchValue_max || 999999}},
+          {noOfBathrooms:{ $gte:5 }},
           
         ]
       });
@@ -411,11 +411,11 @@ router.post("/search", async (req, res) => {
       const filteredList = await Listing.find(
         {$and: 
         [
-          {property_type: searchValue_HDBorPrivate},
+          {propertyType: searchValue_HDBorPrivate},
           {price:{$gt:searchValue_min || 0}},
-          {price:{$lt:searchValue_max || 9999}},
-          {no_of_bedrooms:{ $gte:5 }},
-          {no_of_bathrooms:{ $gte:5 }},
+          {price:{$lt:searchValue_max || 999999}},
+          {noOfBedrooms:{ $gte:5 }},
+          {noOfBathrooms:{ $gte:5 }},
         ]
       });
       res.status(200).json(filteredList)
@@ -424,9 +424,9 @@ router.post("/search", async (req, res) => {
         {$and: 
         [
           {price:{$gt:searchValue_min || 0}},
-          {price:{$lt:searchValue_max || 9999}},
-          {no_of_bathrooms:{ $eq:searchValue_Bathrooms }},
-          {no_of_bedrooms:{ $eq:searchValue_Rooms }}
+          {price:{$lt:searchValue_max || 999999}},
+          {noOfBathrooms:{ $eq:searchValue_Bathrooms }},
+          {noOfBedrooms:{ $eq:searchValue_Rooms }}
         ]
       });
       res.status(200).json(filteredList)
@@ -434,10 +434,10 @@ router.post("/search", async (req, res) => {
       const filteredList = await Listing.find(
         {$and: 
         [
-          {property_type: searchValue_HDBorPrivate},
+          {propertyType: searchValue_HDBorPrivate},
           {price:{$gt:searchValue_min || 0}},
-          {price:{$lt:searchValue_max || 9999}},
-          {no_of_bathrooms:{ $eq:searchValue_Bathrooms }},
+          {price:{$lt:searchValue_max || 999999}},
+          {noOfBathrooms:{ $eq:searchValue_Bathrooms }},
         ]
       });
       res.status(200).json(filteredList)
@@ -445,10 +445,10 @@ router.post("/search", async (req, res) => {
       const filteredList = await Listing.find(
         {$and: 
         [
-          {property_type: searchValue_HDBorPrivate},
+          {propertyType: searchValue_HDBorPrivate},
           {price:{$gt:searchValue_min || 0}},
-          {price:{$lt:searchValue_max || 9999}},
-          {no_of_bedrooms:{ $eq:searchValue_Rooms }},
+          {price:{$lt:searchValue_max || 999999}},
+          {noOfBedrooms:{ $eq:searchValue_Rooms }},
         ]
       });
       res.status(200).json(filteredList)
@@ -456,11 +456,11 @@ router.post("/search", async (req, res) => {
       const filteredList = await Listing.find(
         {$and: 
         [
-          {property_type: searchValue_HDBorPrivate},
+          {propertyType: searchValue_HDBorPrivate},
           {price:{$gt:searchValue_min || 0}},
-          {price:{$lt:searchValue_max || 9999}},
-          {no_of_bedrooms:{ $gte:5 }},
-          {no_of_bathrooms:{ $eq:searchValue_Bathrooms }},
+          {price:{$lt:searchValue_max || 999999}},
+          {noOfBedrooms:{ $gte:5 }},
+          {noOfBathrooms:{ $eq:searchValue_Bathrooms }},
           
         ]
       });
@@ -469,11 +469,11 @@ router.post("/search", async (req, res) => {
       const filteredList = await Listing.find(
         {$and: 
         [
-          {property_type: searchValue_HDBorPrivate},
+          {propertyType: searchValue_HDBorPrivate},
           {price:{$gt:searchValue_min || 0}},
-          {price:{$lt:searchValue_max || 9999}},
-          {no_of_bedrooms:{ $eq:searchValue_Rooms }},
-          {no_of_bathrooms:{ $gte:5 }},
+          {price:{$lt:searchValue_max || 999999}},
+          {noOfBedrooms:{ $eq:searchValue_Rooms }},
+          {noOfBathrooms:{ $gte:5 }},
         ]
       });
       res.status(200).json(filteredList)
@@ -481,11 +481,11 @@ router.post("/search", async (req, res) => {
       const filteredList = await Listing.find(
         {$and: 
         [
-          {property_type: searchValue_HDBorPrivate},
+          {propertyType: searchValue_HDBorPrivate},
           {price:{$gt:searchValue_min || 0}},
-          {price:{$lt:searchValue_max || 9999}},
-          {no_of_bedrooms:{ $eq:searchValue_Rooms }},
-          {no_of_bathrooms:{ $eq:searchValue_Bathrooms }},
+          {price:{$lt:searchValue_max || 999999}},
+          {noOfBedrooms:{ $eq:searchValue_Rooms }},
+          {noOfBathrooms:{ $eq:searchValue_Bathrooms }},
         ]
       });
       res.status(200).json(filteredList)
@@ -495,6 +495,5 @@ router.post("/search", async (req, res) => {
     res.status(400).json({ error: error.message });
   }
 });
-
 
 module.exports = router;

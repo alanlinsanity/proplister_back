@@ -47,7 +47,7 @@ const listingSchema = mongoose.Schema(
       required: true,
     },
     contact: {
-      type: String,
+      type: Number,
       required: true,
     },
     images: [],
