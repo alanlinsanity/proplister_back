@@ -2,10 +2,12 @@ const express = require("express");
 const router = express.Router();
 
 const mongoose = require("mongoose");
+require('dotenv').config();
+console.log(process.env.MONGODB_URI)
 
-const mongoURL = `mongodb+srv://alanlinsanity:32s9221683g@cluster0.vq2et.mongodb.net/free2list`;
+const mongoURI = process.env.MONGODB_URI
 
-mongoose.connect(mongoURL, { useUnifiedTopology: true, useNewUrlParser: true });
+mongoose.connect(mongoURI, {useUnifiedTopology : true, useNewUrlParser : true });
 
 const User = require("../models/user");
 
