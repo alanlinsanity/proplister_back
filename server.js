@@ -24,6 +24,10 @@ app.use('/api/users', usersRoute)
 
 const port = process.env.PORT || 5000;
 
+app.get("/", (req, res) => {
+  res.send("welcome to proplister")
+});
+
 app.listen(port, () => 
     console.log(`Server running on port ${port}`)
 );
